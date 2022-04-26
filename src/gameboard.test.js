@@ -31,3 +31,41 @@ test ('place a small ship with invalid direction', () => {
 test ('place a large ship horizontal', () => {
     expect(testBoard.placeShip(5, 5, 5, 'horizontal')).toBe(true);
 });
+
+test ('place a large ship overlapping right border', () => {
+    expect(() => {
+        testBoard.placeShip(10, 5, 5, 'horizontal');
+    }).toThrow();
+});
+
+test ('place a large ship overlapping top border', () => {
+    expect(() => {
+        testBoard.placeShip(5, 10, 5, 'vertical');
+    }).toThrow();
+});
+
+test ('place a large ship outside allowed coordinates x axis', () => {
+    expect(() => {
+        testBoard.placeShip(-1, 1, 5, 'vertical');
+    }).toThrow();
+});
+
+test ('place a large ship outside allowed coordinates y axis', () => {
+    expect(() => {
+        testBoard.placeShip(1, -1, 5, 'horizontal');
+    }).toThrow();
+});
+
+test ('shoot and hit a ship', () => {
+    expect(testBoard.recieveAttack(0, 0)).toBe(true);
+});
+
+test ('shoot and miss a ship', () => {
+    expect(testBoard.recieveAttack(9, 9)).toBe(false);
+});
+
+test ('shoot with unapproved coordinates', () => {
+    expect(() => {
+        testBoard.recieveAttack(-1, -1);
+    }).toThrow();
+});

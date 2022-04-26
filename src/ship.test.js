@@ -27,4 +27,3 @@ test ('hit outside length', () => {     // should throw error
         testShipSmall.hit(2);
     }).toThrow();
 });
-

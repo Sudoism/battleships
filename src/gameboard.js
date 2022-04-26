@@ -52,8 +52,24 @@ const gameBoard = () => {
         return true;
     }
 
+    const recieveAttack = (xCoordinate, yCoordinate) => {
+        if (xCoordinate < 0 || xCoordinate > 9 || yCoordinate < 0 || yCoordinate > 9) {
+            throw new Error('Invalid coordinates');
+        }
+        if (grid[xCoordinate][yCoordinate] === 0) {
+            grid[xCoordinate][yCoordinate] = 'miss';
+            return false;
+        } else {
+            let shipId = grid[xCoordinate][yCoordinate];
+            ships[shipId - 1].hit(xCoordinate, yCoordinate);
+            grid[xCoordinate][yCoordinate] = 'hit';
+            return true;
+        }
+    }
+
     return {
-        placeShip
+        placeShip,
+        recieveAttack,
     }
 
 };
