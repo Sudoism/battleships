@@ -69,3 +69,7 @@ test ('shoot with unapproved coordinates', () => {
         testBoard.recieveAttack(-1, -1);
     }).toThrow();
 });
+
+test ('check if all ships sunken when its not', () => {
+    expect(testBoard.isGameOver()).toBe(false);
+});
