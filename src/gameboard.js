@@ -1,7 +1,7 @@
 import { Ship } from "./ship";
 
 const gameBoard = () => {
-    let grid = Array(10).fill(Array(10).fill(0)); //create a 10x10 grid filled with 0s
+    let grid = Array.from({length: 10}, e => Array(10).fill(0));; //create a 10x10 grid filled with 0s
     let ships = [];
 
     const placeShip = (xCoordinate, yCoordinate, length, direction) => {
@@ -16,9 +16,9 @@ const gameBoard = () => {
                     throw new Error('Ship cannot be placed there');
                 }
             }
-            for (let i = 0; i < length; i++) {
-                grid[xCoordinate + i][yCoordinate] = 1;
-            }
+          //  for (let i = 0; i < length; i++) {
+          //      grid[xCoordinate + i][yCoordinate] = 1;
+          //  }
         } else if (direction === 'vertical') {
             if (yCoordinate + length > 10) {
                 throw new Error('Ship is out of bounds');
@@ -28,9 +28,9 @@ const gameBoard = () => {
                     throw new Error('Ship cannot be placed there');
                 }
             }
-            for (let i = 0; i < length; i++) {
-                grid[xCoordinate][yCoordinate + i] = 1;
-            }
+          //  for (let i = 0; i < length; i++) {
+          //      grid[xCoordinate][yCoordinate + i] = 1;
+          //  }
         } else {
             throw new Error('Invalid direction');
         }
@@ -39,7 +39,7 @@ const gameBoard = () => {
         const ship = Ship(length);
         ships.push(ship);
         let boardShipId = ships.length;
-        grid[xCoordinate][yCoordinate] = boardShipId;
+      //  grid[xCoordinate][yCoordinate] = boardShipId;
         if (direction === 'horizontal') {
             for (let i = 0; i < length; i++) {
                 grid[xCoordinate + i][yCoordinate] = boardShipId;
@@ -67,9 +67,25 @@ const gameBoard = () => {
         }
     }
 
+    const isGameOver = () => {
+        for (let i = 0; i < ships.length; i++) {
+            if (!ships[i].isSunk()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    const getGrid = () => {
+        return grid;
+    }
+    
+
     return {
         placeShip,
         recieveAttack,
+        isGameOver,
+        getGrid
     }
 
 };

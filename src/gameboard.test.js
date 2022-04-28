@@ -64,6 +64,12 @@ test ('shoot and miss a ship', () => {
     expect(testBoard.recieveAttack(9, 9)).toBe(false);
 });
 
+test ('shoot at same place again', () => {
+    expect(() => {
+        testBoard.recieveAttack(9, 9);
+    }).toThrow();
+});
+
 test ('shoot with unapproved coordinates', () => {
     expect(() => {
         testBoard.recieveAttack(-1, -1);
@@ -72,4 +78,19 @@ test ('shoot with unapproved coordinates', () => {
 
 test ('check if all ships sunken when its not', () => {
     expect(testBoard.isGameOver()).toBe(false);
+});
+
+test ('check if all ships sunken when true', () => {
+    testBoard.recieveAttack(0, 1); // first ship down
+
+    testBoard.recieveAttack(1, 1); // second ship hit
+    testBoard.recieveAttack(1, 2); // second ship down
+
+    testBoard.recieveAttack(5, 5); // third ship hit
+    testBoard.recieveAttack(6, 5); // third ship hit
+    testBoard.recieveAttack(7, 5); // third ship hit
+    testBoard.recieveAttack(8, 5); // third ship hit
+    testBoard.recieveAttack(9, 5); // third ship hit
+
+    expect(testBoard.isGameOver()).toBe(true);
 });
