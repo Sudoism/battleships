@@ -6,7 +6,9 @@ const gameBoard = () => {
 
     const placeShip = (xCoordinate, yCoordinate, length, direction) => {
 
-        // Error handling of size and direction 
+        const ship = Ship(length);
+        let boardShipId = ships.length+1;
+
         if (direction === 'horizontal') {
             if (xCoordinate + length > 10) {
                 throw new Error('Ship is out of bounds');
@@ -15,11 +17,9 @@ const gameBoard = () => {
                 if (grid[xCoordinate + i][yCoordinate] !== 0) {
                     throw new Error('Ship cannot be placed there');
                 }
+                grid[xCoordinate + i][yCoordinate] = `${boardShipId}${i}`;
             }
-          //  for (let i = 0; i < length; i++) {
-          //      grid[xCoordinate + i][yCoordinate] = 1;
-          //  }
-        } else if (direction === 'vertical') {
+        } else if (direction === 'vertical') {   // if direction is vertical
             if (yCoordinate + length > 10) {
                 throw new Error('Ship is out of bounds');
             }
@@ -27,28 +27,14 @@ const gameBoard = () => {
                 if (grid[xCoordinate][yCoordinate + i] !== 0) {
                     throw new Error('Ship cannot be placed there');
                 }
+                grid[xCoordinate][yCoordinate + i] = `${boardShipId}${i}`;
             }
-          //  for (let i = 0; i < length; i++) {
-          //      grid[xCoordinate][yCoordinate + i] = 1;
-          //  }
-        } else {
+        }
+        else {
             throw new Error('Invalid direction');
         }
 
-        // Create a ship object and add it to the ships array
-        const ship = Ship(length);
-        ships.push(ship);
-        let boardShipId = ships.length;
-      //  grid[xCoordinate][yCoordinate] = boardShipId;
-        if (direction === 'horizontal') {
-            for (let i = 0; i < length; i++) {
-                grid[xCoordinate + i][yCoordinate] = boardShipId;
-            }
-        } else if (direction === 'vertical') {   // if direction is vertical
-            for (let i = 0; i < length; i++) {
-                grid[xCoordinate][yCoordinate + i] = boardShipId;
-            }
-        }
+        ships.push(ship); //if no error, ship is placed on board and is added to ships array
         return true;
     }
 
@@ -60,8 +46,10 @@ const gameBoard = () => {
             grid[xCoordinate][yCoordinate] = 'miss';
             return false;
         } else {
-            let shipId = grid[xCoordinate][yCoordinate];
-            ships[shipId - 1].hit(xCoordinate, yCoordinate);
+            let shipInfo = grid[xCoordinate][yCoordinate].split('');
+            let shipId = shipInfo[0];
+            let shipIndex = shipInfo[1];
+            ships[shipId - 1].hit(shipIndex);
             grid[xCoordinate][yCoordinate] = 'hit';
             return true;
         }

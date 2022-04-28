@@ -81,7 +81,7 @@ test ('check if all ships sunken when its not', () => {
 });
 
 test ('check if all ships sunken when true', () => {
-    testBoard.recieveAttack(0, 1); // first ship down
+    testBoard.recieveAttack(1, 0); // first ship down
 
     testBoard.recieveAttack(1, 1); // second ship hit
     testBoard.recieveAttack(1, 2); // second ship down
