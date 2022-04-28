@@ -17,11 +17,16 @@ const player = (name) => {
         return playerBoard.isGameOver();
     };
 
+    const getBoard = () => {
+        return playerBoard.getBoard();
+    };
+
     return {
         getName,
         placeShip,
         recieveAttack,
         isGameOver,
+        getBoard,
     };
 }
 

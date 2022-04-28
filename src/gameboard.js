@@ -3,6 +3,7 @@ import { Ship } from "./ship";
 const gameBoard = () => {
     let grid = Array.from({length: 10}, e => Array(10).fill(0));; //create a 10x10 grid filled with 0s
     let ships = [];
+    let publicBoard = Array.from({length: 10}, e => Array(10).fill(0));;
 
     const placeShip = (xCoordinate, yCoordinate, length, direction) => {
 
@@ -44,6 +45,7 @@ const gameBoard = () => {
         }
         if (grid[xCoordinate][yCoordinate] === 0) {
             grid[xCoordinate][yCoordinate] = 'miss';
+            publicBoard[xCoordinate][yCoordinate] = 'miss';
             return false;
         } else {
             let shipInfo = grid[xCoordinate][yCoordinate].split('');
@@ -51,6 +53,7 @@ const gameBoard = () => {
             let shipIndex = shipInfo[1];
             ships[shipId - 1].hit(shipIndex);
             grid[xCoordinate][yCoordinate] = 'hit';
+            publicBoard[xCoordinate][yCoordinate] = 'hit';
             return true;
         }
     }
@@ -62,19 +65,18 @@ const gameBoard = () => {
             }
         }
         return true;
-    }
+    };
 
-    const getGrid = () => {
-        return grid;
-    }
-    
+    const getBoard = () => {
+        return publicBoard;
+    };
 
     return {
         placeShip,
         recieveAttack,
         isGameOver,
-        getGrid
-    }
+        getBoard,
+    };
 
 };
 
