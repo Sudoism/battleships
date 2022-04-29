@@ -1,5 +1,6 @@
 const displayController = () => {
     const body = document.querySelector("body");
+    const board1 = document.getElementById("board1");
 
     const helloWorld = () => {
         body.appendChild(document.createElement("h1")).textContent = "Hello World again";
@@ -19,7 +20,7 @@ const displayController = () => {
                 tr.appendChild(td);
             }
         }
-        body.appendChild(table);
+        board1.appendChild(table);
     };
 
     return {
