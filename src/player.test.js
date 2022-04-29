@@ -62,28 +62,14 @@ test ('An attack will return true when hiting a boat', () => {
     expect(player1.recieveAttack(1, 0)).toBe(true);
 });
 
-test ('shoud be able to get public board from player1 that reports sunken status', () => { 
-    expect(player1.getBoard()).toEqual([
-        ['sunken', 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        ['sunken', 'miss', 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]);
-});
-
 test ('should return game over when boats are sunk', () => {   
     expect(player1.isGameOver()).toBe(true);
 });
 
 const player2 = player("player2")
 
-test ('should be able to perform an attack if asked', () => {
-    expect(player2.performAttack(player1.getBoard())).toReturn();
+test ('should find valid attack coordinates when asked to attack', () => {
+    expect(player2.performAttack([[0, 'hit '], ['miss', 'miss']] )).toEqual([0, 0]);
 });
+
 
