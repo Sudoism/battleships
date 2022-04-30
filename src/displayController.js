@@ -3,7 +3,7 @@ const displayController = () => {
     const board1 = document.getElementById("board1");
 
     const helloWorld = () => {
-        body.appendChild(document.createElement("h1")).textContent = "Hello World again";
+        body.appendChild(document.createElement("h1")).textContent = "Hello stuff";
     };
 
     const displayBoard = (board) => {

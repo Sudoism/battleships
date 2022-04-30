@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     entry: "./src/index.js",
@@ -16,13 +17,28 @@ module.exports = {
                     {
                         loader: 'css-loader', options: { importLoaders: 1}
                     },
-                    'postcss-loader'
+                    'postcss-loader',
                 ]
             }
         ]
     },
 
+    plugins: [
+        new HtmlWebpackPlugin({
+          template: "src/index.html",
+          path: path.resolve(__dirname, "dist"),
+          filename: "index.html",
+        }),
+      ],
+
     devServer: {
-        static: './dist'
+        //static: './dist',
+        static: {
+            directory: path.resolve(__dirname, 'dist'),
+
+        },
+        watchFiles: ['src/**/*.js', 'src/**/*.css','src/**/*.html'],
+
+        //liveReload: true,
     }
 };
