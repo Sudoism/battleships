@@ -20,6 +20,7 @@ player2.placeShip(6, 6, 2, 'vertical');
 
 const display = displayController();
 //display.helloWorld();
-//display.displayBoard(player1.getBoard());
+display.displayBoard(player1.getBoard(), "player1");
+display.displayBoard(player2.getBoard(), "player2");
 //display.displayBoard(player2.getBoard());
 

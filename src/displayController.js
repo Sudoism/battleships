@@ -6,27 +6,21 @@ const displayController = () => {
         body.appendChild(document.createElement("h1")).textContent = "Hello stuff";
     };
 
-    const displayBoard = (board) => {
-        const displayBoard = document.createElement("div");
-        displayBoard.classList.add(
-            "grid",
-            `grid-cols-${board.length}`,
-            "hover:cursor-crosshair",
-            );
-        for (let i = 0; i < board.length; i++) {
-            for (let j = 0; j < board[i].length; j++) {
-                const boardCell = document.createElement("div");
-                boardCell.classList.add(
-                    "border",
-                    "border-gray-200",
-                    "text-center",
-                    "hover:bg-sky-300",
-                    );
-                boardCell.textContent = board[i][j];
-                displayBoard.appendChild(boardCell);
-            }
-        }
-        container.appendChild(displayBoard);
+    const displayBoard = (board,id) => {
+        const boardContainer = document.getElementById(id);
+        let numberOfCells = board.length*board.length;
+
+        for(let i=0; i<numberOfCells; i++){
+            let cell = document.createElement("div");
+            cell.classList.add(
+                "border",
+                "border-dashed",
+                "border-gray-200",
+                "hover:bg-blue-400",
+                "hover:cursor-crosshair"
+                );
+            boardContainer.appendChild(cell);
+        };
     };
 
     return {
