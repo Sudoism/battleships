@@ -1,7 +1,7 @@
 import { Ship } from "./ship";
 
 const gameBoard = () => {
-    let grid = Array.from({length: 10}, e => Array(10).fill(0));; //create a 10x10 grid filled with 0s
+    let privateBoard = Array.from({length: 10}, e => Array(10).fill(0));; //create a 10x10 grid filled with 0s
     let ships = [];
     let publicBoard = Array.from({length: 10}, e => Array(10).fill(0));;
 
@@ -15,20 +15,20 @@ const gameBoard = () => {
                 throw new Error('Ship is out of bounds');
             }
             for (let i = 0; i < length; i++) {
-                if (grid[xCoordinate + i][yCoordinate] !== 0) {
+                if (privateBoard[xCoordinate + i][yCoordinate] !== 0) {
                     throw new Error('Ship cannot be placed there');
                 }
-                grid[xCoordinate + i][yCoordinate] = `${boardShipId}${i}`;
+                privateBoard[xCoordinate + i][yCoordinate] = `${boardShipId}${i}`;
             }
         } else if (direction === 'vertical') {   // if direction is vertical
             if (yCoordinate + length > 10) {
                 throw new Error('Ship is out of bounds');
             }
             for (let i = 0; i < length; i++) {
-                if (grid[xCoordinate][yCoordinate + i] !== 0) {
+                if (privateBoard[xCoordinate][yCoordinate + i] !== 0) {
                     throw new Error('Ship cannot be placed there');
                 }
-                grid[xCoordinate][yCoordinate + i] = `${boardShipId}${i}`;
+                privateBoard[xCoordinate][yCoordinate + i] = `${boardShipId}${i}`;
             }
         }
         else {
@@ -43,16 +43,16 @@ const gameBoard = () => {
         if (xCoordinate < 0 || xCoordinate > 9 || yCoordinate < 0 || yCoordinate > 9) {
             throw new Error('Invalid coordinates');
         }
-        if (grid[xCoordinate][yCoordinate] === 0) {
-            grid[xCoordinate][yCoordinate] = 'miss';
+        if (privateBoard[xCoordinate][yCoordinate] === 0) {
+            privateBoard[xCoordinate][yCoordinate] = 'miss';
             publicBoard[xCoordinate][yCoordinate] = 'miss';
             return false;
         } else {
-            let shipInfo = grid[xCoordinate][yCoordinate].split('');
+            let shipInfo = privateBoard[xCoordinate][yCoordinate].split('');
             let shipId = shipInfo[0];
             let shipIndex = shipInfo[1];
             ships[shipId - 1].hit(shipIndex);
-            grid[xCoordinate][yCoordinate] = 'hit';
+            privateBoard[xCoordinate][yCoordinate] = 'hit';
             publicBoard[xCoordinate][yCoordinate] = 'hit';
             return true;
         }
@@ -71,11 +71,16 @@ const gameBoard = () => {
         return publicBoard;
     };
 
+    const getPrivateBoard = () => {
+        return privateBoard;
+    };
+
     return {
         placeShip,
         recieveAttack,
         isGameOver,
         getBoard,
+        getPrivateBoard,
     };
 
 };

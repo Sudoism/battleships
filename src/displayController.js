@@ -19,11 +19,17 @@ const displayController = () => {
                     "hover:bg-blue-400",
                     "hover:cursor-crosshair"
                     );
-                cell.textContent= `${x}${y}`;
-                cell.addEventListener("click", (e) => {
-                    console.log(`${x}${y}`);
-                    e.target.classList.add("bg-red-400");
-                });
+                cell.textContent= `${x}${y} `+board[x][y];
+                if(board[x][y]===0){
+                    cell.addEventListener("click", (e) => {
+                        e.target.classList.add("bg-blue-600");
+                    });
+                } else {
+                    cell.addEventListener("click", (e) => {
+                        e.target.classList.add("bg-red-400");
+                    });
+                };
+
                 boardContainer.appendChild(cell);
             }
         };

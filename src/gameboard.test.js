@@ -36,8 +36,38 @@ test ('public board should still be all 0s', () => {
     ]);
 });
 
+test ('private board should show ship', () => {
+    expect(testBoard.getPrivateBoard()).toEqual([
+        ["10", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        ["11", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]);
+});
+
 test ('place a small ship vertical on the board', () => {
     expect(testBoard.placeShip(1, 1, 2, 'vertical')).toBe(true);
+});
+
+test ('private board should show ships', () => {
+    expect(testBoard.getPrivateBoard()).toEqual([
+        ["10", 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        ["11", "20", "21", 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]);
 });
 
 test ('place a small ship vertical where already placed a ship on the board', () => {

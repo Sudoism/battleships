@@ -21,6 +21,10 @@ const player = (name) => {
         return playerBoard.getBoard();
     };
 
+    const getPrivateBoard = () => {
+        return playerBoard.getPrivateBoard();
+    };
+
     const performAttack = (grid) => {
         let validAttackCoordinates = [];
         // find valid attackspots
@@ -44,6 +48,7 @@ const player = (name) => {
         recieveAttack,
         isGameOver,
         getBoard,
+        getPrivateBoard,
         performAttack,
     };
 }
