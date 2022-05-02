@@ -8,7 +8,6 @@ const displayController = () => {
 
     const displayBoard = (board,id) => {
         const boardContainer = document.getElementById(id);
-        //let numberOfCells = board.length*board.length;
 
         for(let y=board.length-1; y>=0; y--){
             for(let x=0; x<board.length; x++){
