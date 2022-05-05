@@ -9,6 +9,7 @@ let player2 = player("player2");
 //populate with some ships for player 1
 player1.placeShip(0, 0, 2, 'horizontal');
 player1.placeShip(3, 3, 2, 'vertical');
+console.log(player1.getPrivateBoard());
 player1.recieveAttack(0, 0);
 player1.recieveAttack(7, 7);
 

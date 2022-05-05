@@ -32,23 +32,18 @@ const displayController = () => {
                     "hover:bg-blue-400",
                     "hover:cursor-crosshair"
                     );
-                if(board[y][x] === "hit"){
+                if(board[x][y] === "hit"){
                     cell.classList.add("bg-red-400");
-                } else if(board[y][x] === "miss"){
+                } else if(board[x][y] === "miss"){
                     cell.classList.add("bg-blue-600");
-                };
-
-                cell.textContent= `${x}${y} `+board[x][y];
-                if(board[y][x] !== "hit" && board[y][x] !== "miss"){
+                } else {
                     cell.addEventListener("click", () => {
                         playerObject.recieveAttack(x,y);
                         cleanBoard(id);
                         displayBoard(playerObject,id);
                     });
                 }
-
- 
-
+                cell.textContent= `${x}${y} `+board[x][y];
                 boardContainer.appendChild(cell);
             }
         };
