@@ -13,10 +13,16 @@ const displayController = () => {
         }
     };
 
-    const freezeBoard = (boardId) => {
+    const displayStaticBoard = (playerObject, boardId) => {
+        displayBoard(playerObject, boardId, false);
     };
 
-    const displayBoard = (playerObject,id) => {
+    const displayLiveBoard = (playerObject, boardId) => {
+        displayBoard(playerObject, boardId, true);
+
+    };
+
+    const displayBoard = (playerObject,id, live) => {
         let board = playerObject.getBoard();
         let privateBoard = playerObject.getBoard();
         const boardContainer = document.getElementById(id);
@@ -37,11 +43,13 @@ const displayController = () => {
                 } else if(board[x][y] === "miss"){
                     cell.classList.add("bg-blue-600");
                 } else {
-                    cell.addEventListener("click", () => {
-                        playerObject.recieveAttack(x,y);
-                        cleanBoard(id);
-                        displayBoard(playerObject,id);
-                    });
+                    if(live){
+                        cell.addEventListener("click", () => {
+                            playerObject.recieveAttack(x,y);
+                            cleanBoard(id);
+                            displayLiveBoard(playerObject,id);
+                        });
+                    }
                 }
                 cell.textContent= `${x}${y} `+board[x][y];
                 boardContainer.appendChild(cell);
@@ -51,7 +59,8 @@ const displayController = () => {
 
     return {
         helloWorld,
-        displayBoard,
+        displayLiveBoard,
+        displayStaticBoard,
         cleanBoard,
     };
 }
