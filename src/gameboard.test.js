@@ -2,6 +2,7 @@ import {gameBoard} from '../src/gameboard.js';
 
 const testBoard = gameBoard();
 
+//0,0 is top left, 0,9 is top right, 9,0 is bottom left, 9,9 is bottom right. Turn mock 90 degrees to left to showcase UI
 test ('public board should be all 0s', () => {
     expect(testBoard.getBoard()).toEqual([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
