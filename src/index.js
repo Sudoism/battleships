@@ -29,19 +29,27 @@ display.displayBoard(player2, "player2");
 const makeBoardLive = (playerObject, boardId) => {
     for (let x = 0; x < 10; x++) {
         for (let y = 0; y < 10; y++) {
-            console.log(`${boardId} x${x} y${y}`);
             let cell = document.getElementsByClassName(`${boardId} x${x} y${y}`);
-            cell[0].addEventListener("click", () => {
-                playerObject.recieveAttack(x,y);
-                display.cleanBoard(boardId);
-                display.displayBoard(playerObject, boardId);
-                nextTurn(boardId);
-            });
+            console.log(cell[0].classList.contains("miss"));
+            if(cell[0].classList.contains("unknown")){   
+                cell[0].addEventListener("click", () => {
+                    playerObject.recieveAttack(x,y);
+                    display.cleanBoard(boardId);
+                    display.displayBoard(playerObject, boardId);
+                    nextTurn(boardId);
+                });
+            }
         }
     }
 };
 
 const nextTurn = (nextTurn) => {
+    if (player1.isGameOver()) {
+        alert("player 2 wins");
+    } else if (player2.isGameOver()) {
+        alert("player 1 wins");
+    } 
+
     if (nextTurn === "player1") {
         makeBoardLive(player2, "player2");
     } else {

@@ -2,24 +2,11 @@ const displayController = () => {
     const body = document.querySelector("body");
     const container = document.getElementById("container");
 
-    const helloWorld = () => {
-        body.appendChild(document.createElement("h1")).textContent = "Hello stuff";
-    };
-
     const cleanBoard = (boardId) => {
         const board = document.getElementById(boardId);
         while (board.firstChild) {
             board.removeChild(board.firstChild);
         }
-    };
-
-    const displayStaticBoard = (playerObject, boardId) => {
-        displayBoard(playerObject, boardId, false);
-    };
-
-    const displayLiveBoard = (playerObject, boardId) => {
-        displayBoard(playerObject, boardId, true);
-
     };
 
     const displayBoard = (playerObject,id, live) => {
@@ -37,33 +24,28 @@ const displayController = () => {
                     "border-gray-200",
                     "hover:bg-blue-400",
                     "hover:cursor-crosshair",
+                    "h-max-full",
+                    "w-max-full",
                     `x${x}`,
                     `y${y}`,
                     `${id}`
                     );
                 if(board[x][y] === "hit"){
                     cell.classList.add("bg-red-400");
+                    cell.classList.add("hit");
                 } else if(board[x][y] === "miss"){
                     cell.classList.add("bg-blue-600");
+                    cell.classList.add("miss");
                 } else {
-                   // if(live){
-                   //     cell.addEventListener("click", () => {
-                  //          playerObject.recieveAttack(x,y);
-                   //         cleanBoard(id);
-                 //           displayLiveBoard(playerObject,id);
-                  //      });
-                  //  }
+                    cell.classList.add("unknown");
                 }
-                cell.textContent= `${x}${y} `+board[x][y];
+
                 boardContainer.appendChild(cell);
             }
         };
     };
 
     return {
-        helloWorld,
-        displayLiveBoard,
-        displayStaticBoard,
         displayBoard,
         cleanBoard,
     };
