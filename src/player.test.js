@@ -21,8 +21,16 @@ test ('shoud be able to get publc board from player1', () => {
     ]);
 });
 
+test ('should report 0 ships when no ships placed', () => {
+    expect(player1.getFloatingShips()).toBe(0);
+});
+
 test ('possible to add ship to player1 gameboard', () => {
     expect(player1.placeShip(0, 0, 2, 'horizontal')).toBe(true);
+});
+
+test ('should report 1 ships when one ship is placed', () => {
+    expect(player1.getFloatingShips()).toBe(1);
 });
 
 test ('adding ship with invalid coordinates will throw error', () => {
@@ -64,6 +72,10 @@ test ('An attack will return true when hiting a boat', () => {
 
 test ('should return game over when boats are sunk', () => {   
     expect(player1.isGameOver()).toBe(true);
+});
+
+test ('should report 0 ships when all ships are sunk', () => {
+    expect(player1.getFloatingShips()).toBe(1);
 });
 
 const player2 = player("player2")

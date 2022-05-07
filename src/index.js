@@ -9,11 +9,6 @@ let player2 = player("player2");
 //populate with some ships for player 1
 player1.placeShip(0, 0, 2, 'horizontal');
 player1.placeShip(3, 3, 2, 'vertical');
-console.log(player1.getPrivateBoard());
-player1.recieveAttack(0, 0);
-player1.recieveAttack(7, 7);
-player2.recieveAttack(0, 1);
-player2.recieveAttack(2, 7);
 
 //populate with some ships for player 2
 player2.placeShip(5, 5, 2, 'horizontal');
@@ -30,7 +25,6 @@ const makeBoardLive = (playerObject, boardId) => {
     for (let x = 0; x < 10; x++) {
         for (let y = 0; y < 10; y++) {
             let cell = document.getElementsByClassName(`${boardId} x${x} y${y}`);
-            console.log(cell[0].classList.contains("miss"));
             if(cell[0].classList.contains("unknown")){   
                 cell[0].addEventListener("click", () => {
                     playerObject.recieveAttack(x,y);
@@ -43,17 +37,28 @@ const makeBoardLive = (playerObject, boardId) => {
     }
 };
 
-const nextTurn = (nextTurn) => {
+const nextTurn = (nextPlayerTurn) => {
+    display.updateShipStatus("ship-status-1", `Ships Left: ${player1.getFloatingShips()}`);
+    display.updateShipStatus("ship-status-2", `Ships Left: ${player2.getFloatingShips()}`);
+
     if (player1.isGameOver()) {
-        alert("player 2 wins");
+        display.updateGameStatus("Player 2 won");
+        return
     } else if (player2.isGameOver()) {
-        alert("player 1 wins");
+        display.updateGameStatus("Player 1 won");
+        return
     } 
 
-    if (nextTurn === "player1") {
+    if (nextPlayerTurn === "player1") {
+        display.updateGameStatus("Player1s turn...");
         makeBoardLive(player2, "player2");
     } else {
-        makeBoardLive(player1, "player1");
+        display.updateGameStatus("Player2s turn...");
+        let coordinates = player2.performAttack( player1.getBoard() );
+        player1.recieveAttack(coordinates[0], coordinates[1]);
+        display.cleanBoard("player1");
+        display.displayBoard(player1, "player1");
+        nextTurn("player1");
     }
 };
 

@@ -9,16 +9,16 @@
 <body class="bg-slate-100 font-mono">
     <div id="container" class="grid grid-cols-2 gap-5 grid-rows-[1fr_1fr_8fr] h-screen w-screen p-10">
         <div class="col-span-2 place-self-center text-7xl my-2 font-bold">Battleships</div>
-        <div class="col-span-2 place-self-center text-3xl my-2">Player1s turn..</div>
+        <div class="col-span-2 place-self-center text-3xl my-2" id="game-status">Player1s turn...</div>
         <div class="grid grid-rows-[1fr_1fr_10fr]">
             <div class="text-center text-2xl">Player1</div>
-            <div class="text-center text-l">Ships left: 2</div>
+            <div class="text-center text-l" id="ship-status-1">Ships left: 2</div>
             <div id="player1" class="grid grid-cols-10 grid-rows-auto bg-blue-300">
             </div>
         </div>
         <div class="grid grid-rows-[1fr_1fr_10fr]">
             <div class="text-center text-2xl">Player2</div>
-            <div class="text-center text-l">Ships left: 2</div>
+            <div class="text-center text-l" id="ship-status-2">Ships left: 2</div>
             <div id="player2" class="grid grid-cols-10 grid-rows-auto bg-blue-300">
             </div>
         </div>

@@ -1,12 +1,23 @@
 const displayController = () => {
     const body = document.querySelector("body");
     const container = document.getElementById("container");
+    const gameStatus = document.getElementById("game-status");
+    const shipStatus1 = document.getElementById("ship-status-1");
+    const shipStatus2 = document.getElementById("ship-status-2");
 
     const cleanBoard = (boardId) => {
         const board = document.getElementById(boardId);
         while (board.firstChild) {
             board.removeChild(board.firstChild);
         }
+    };
+
+    const updateShipStatus= (shipStatusId, status) => {
+        const shipStatus = document.getElementById(shipStatusId);
+        shipStatus.innerText = status
+    }
+    const updateGameStatus = (status) => {
+        gameStatus.innerText = status;
     };
 
     const displayBoard = (playerObject,id, live) => {
@@ -48,6 +59,8 @@ const displayController = () => {
     return {
         displayBoard,
         cleanBoard,
+        updateGameStatus,
+        updateShipStatus
     };
 }
 

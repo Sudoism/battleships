@@ -75,12 +75,23 @@ const gameBoard = () => {
         return privateBoard;
     };
 
+    const getFloatingShips = () => {
+        let floatingShips = 0;
+        for (let i = 0; i < ships.length; i++) {
+            if (!ships[i].isSunk()) {
+                floatingShips +=1;
+            }
+        }
+        return floatingShips;
+    };
+
     return {
         placeShip,
         recieveAttack,
         isGameOver,
         getBoard,
         getPrivateBoard,
+        getFloatingShips
     };
 
 };

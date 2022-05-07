@@ -20,6 +20,10 @@ const player = (name) => {
     const getBoard = () => {
         return playerBoard.getBoard();
     };
+    
+    const getFloatingShips = () => {
+        return playerBoard.getFloatingShips();
+    };
 
     const getPrivateBoard = () => {
         return playerBoard.getPrivateBoard();
@@ -50,6 +54,7 @@ const player = (name) => {
         getBoard,
         getPrivateBoard,
         performAttack,
+        getFloatingShips
     };
 }
 
