@@ -36,20 +36,23 @@ const displayController = () => {
                     "border-dashed",
                     "border-gray-200",
                     "hover:bg-blue-400",
-                    "hover:cursor-crosshair"
+                    "hover:cursor-crosshair",
+                    `x${x}`,
+                    `y${y}`,
+                    `${id}`
                     );
                 if(board[x][y] === "hit"){
                     cell.classList.add("bg-red-400");
                 } else if(board[x][y] === "miss"){
                     cell.classList.add("bg-blue-600");
                 } else {
-                    if(live){
-                        cell.addEventListener("click", () => {
-                            playerObject.recieveAttack(x,y);
-                            cleanBoard(id);
-                            displayLiveBoard(playerObject,id);
-                        });
-                    }
+                   // if(live){
+                   //     cell.addEventListener("click", () => {
+                  //          playerObject.recieveAttack(x,y);
+                   //         cleanBoard(id);
+                 //           displayLiveBoard(playerObject,id);
+                  //      });
+                  //  }
                 }
                 cell.textContent= `${x}${y} `+board[x][y];
                 boardContainer.appendChild(cell);
@@ -61,6 +64,7 @@ const displayController = () => {
         helloWorld,
         displayLiveBoard,
         displayStaticBoard,
+        displayBoard,
         cleanBoard,
     };
 }

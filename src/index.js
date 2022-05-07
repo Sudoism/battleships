@@ -19,17 +19,36 @@ player2.recieveAttack(2, 7);
 player2.placeShip(5, 5, 2, 'horizontal');
 player2.placeShip(6, 6, 2, 'vertical');
 
-//while(true){
-
-//}
 
 const display = displayController();
-//display.helloWorld();
-//display.displayBoard(player1.getPrivateBoard(), "player1");
-display.displayStaticBoard(player1, "player1");
-display.displayLiveBoard(player2, "player2");
-//display.displayBoard(player2.getBoard(), "player2");
-//display.cleanBoard("player2");
-//display.displayBoard(player2.getBoard(), "player2");
-//display.displayBoard(player2.getBoard());
+
+//first paint the board
+display.displayBoard(player1, "player1");
+display.displayBoard(player2, "player2");
+
+const makeBoardLive = (playerObject, boardId) => {
+    for (let x = 0; x < 10; x++) {
+        for (let y = 0; y < 10; y++) {
+            console.log(`${boardId} x${x} y${y}`);
+            let cell = document.getElementsByClassName(`${boardId} x${x} y${y}`);
+            cell[0].addEventListener("click", () => {
+                playerObject.recieveAttack(x,y);
+                display.cleanBoard(boardId);
+                display.displayBoard(playerObject, boardId);
+                nextTurn(boardId);
+            });
+        }
+    }
+};
+
+const nextTurn = (nextTurn) => {
+    if (nextTurn === "player1") {
+        makeBoardLive(player2, "player2");
+    } else {
+        makeBoardLive(player1, "player1");
+    }
+};
+
+makeBoardLive(player2, "player2");
+
 
