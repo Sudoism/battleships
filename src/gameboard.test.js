@@ -170,3 +170,21 @@ test ('check if all ships sunken when true', () => {
 
     expect(testBoard.isGameOver()).toBe(true);
 });
+
+const testBoard2 = gameBoard();
+const checkForValueInArray = (array, value) => {
+
+};
+
+test ('check if placing ships automatically works', () => {
+    testBoard2.placeShipsAuto(2);
+    expect(testBoard2.getPrivateBoard()).toContain(11);
+    expect(testBoard2.getPrivateBoard()).toContain(10);
+});
+
+test ('check if placing another ship automatically works', () => {
+    testBoard2.placeShipsAuto(3);
+    expect(testBoard2.getPrivateBoard()).toContain(20);
+    expect(testBoard2.getPrivateBoard()).toContain(21);
+    expect(testBoard2.getPrivateBoard()).toContain(22);
+});

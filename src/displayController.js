@@ -1,9 +1,5 @@
 const displayController = () => {
-    const body = document.querySelector("body");
-    const container = document.getElementById("container");
     const gameStatus = document.getElementById("game-status");
-    const shipStatus1 = document.getElementById("ship-status-1");
-    const shipStatus2 = document.getElementById("ship-status-2");
 
     const cleanBoard = (boardId) => {
         const board = document.getElementById(boardId);

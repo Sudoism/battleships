@@ -14,7 +14,6 @@ player1.placeShip(3, 3, 2, 'vertical');
 player2.placeShip(5, 5, 2, 'horizontal');
 player2.placeShip(6, 6, 2, 'vertical');
 
-
 const display = displayController();
 
 //first paint the board
