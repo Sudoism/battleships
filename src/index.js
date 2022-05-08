@@ -11,8 +11,9 @@ player1.placeShip(0, 0, 2, 'horizontal');
 player1.placeShip(3, 3, 2, 'vertical');
 
 //populate with some ships for player 2
-player2.placeShip(5, 5, 2, 'horizontal');
-player2.placeShip(6, 6, 2, 'vertical');
+//player2.placeShip(5, 5, 2, 'horizontal');
+player2.placeShipsAuto(2);
+player2.placeShipsAuto(2);
 
 const display = displayController();
 

@@ -17,6 +17,10 @@ const player = (name) => {
         return playerBoard.isGameOver();
     };
 
+    const placeShipsAuto = (length) => {
+        return playerBoard.placeShipsAuto(length);
+    }
+
     const getBoard = () => {
         return playerBoard.getBoard();
     };
@@ -54,7 +58,8 @@ const player = (name) => {
         getBoard,
         getPrivateBoard,
         performAttack,
-        getFloatingShips
+        getFloatingShips,
+        placeShipsAuto
     };
 }
 
