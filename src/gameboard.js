@@ -39,6 +39,31 @@ const gameBoard = () => {
         return true;
     }
 
+    const placeShipsAuto = (length) => {
+        let randomX = Math.floor(Math.random() * 10);
+        let randomY = Math.floor(Math.random() * 10);
+        let randomDirection = Math.floor(Math.random() * 2);
+        if (randomDirection === 0) {
+            randomDirection = 'vertical';
+        } else {
+            randomDirection = 'horizontal';
+        }
+
+        let keepTrying = true;
+
+        while(keepTrying) {
+            try {
+                placeShip(randomX, randomY, length, randomDirection);
+                keepTrying = false; //if no error, ship is placed on board and is added to ships array
+            } catch (error) {
+                randomX = Math.floor(Math.random() * 10);
+                randomY = Math.floor(Math.random() * 10);
+            }
+        }
+    }
+
+
+
     const recieveAttack = (xCoordinate, yCoordinate) => {
         if (xCoordinate < 0 || xCoordinate > 9 || yCoordinate < 0 || yCoordinate > 9) {
             throw new Error('Invalid coordinates');
@@ -91,7 +116,8 @@ const gameBoard = () => {
         isGameOver,
         getBoard,
         getPrivateBoard,
-        getFloatingShips
+        getFloatingShips,
+        placeShipsAuto
     };
 
 };

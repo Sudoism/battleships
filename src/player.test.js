@@ -75,7 +75,7 @@ test ('should return game over when boats are sunk', () => {
 });
 
 test ('should report 0 ships when all ships are sunk', () => {
-    expect(player1.getFloatingShips()).toBe(1);
+    expect(player1.getFloatingShips()).toBe(0);
 });
 
 const player2 = player("player2")
