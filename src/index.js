@@ -17,9 +17,23 @@ player2.placeShipsAuto(2);
 
 const display = displayController();
 
-//first paint the board
-display.displayBoard(player1, "player1");
-display.displayBoard(player2, "player2");
+
+
+const placeShipOnBoard = (playerObject, boardId, length, direction) => {
+    for (let x = 0; x < 10; x++) {
+        for (let y = 0; y < 10; y++) {
+            let cell = document.getElementsByClassName(`${boardId} x${x} y${y}`);
+            cell[0].classList.add("hover:bg-yellow-400");
+            if(cell[0].classList.contains("unknown")){   
+                cell[0].addEventListener("click", () => {
+                    playerObject.placeShip(x,y,length,direction);
+                    display.cleanBoard(boardId);
+                    display.displayBoard(playerObject, boardId);
+                });
+            }
+        }
+    } 
+}
 
 const makeBoardLive = (playerObject, boardId) => {
     for (let x = 0; x < 10; x++) {
@@ -61,6 +75,13 @@ const nextTurn = (nextPlayerTurn) => {
         nextTurn("player1");
     }
 };
+
+
+//first paint the board
+display.displayBoard(player1, "player1", true);
+console.log(player1.getPrivateBoard())
+display.displayBoard(player2, "player2", false);
+placeShipOnBoard(player1, "player1", 2, "horizontal");
 
 makeBoardLive(player2, "player2");
 

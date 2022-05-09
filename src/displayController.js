@@ -16,9 +16,14 @@ const displayController = () => {
         gameStatus.innerText = status;
     };
 
-    const displayBoard = (playerObject,id, live) => {
-        let board = playerObject.getBoard();
-        let privateBoard = playerObject.getBoard();
+    const displayBoard = (playerObject,id,showPrivate) => {
+        let board = [];
+        if(showPrivate){
+            board = playerObject.getPrivateBoard();
+        } else {
+            board = playerObject.getBoard();
+        }
+        
         const boardContainer = document.getElementById(id);
 
         for(let y=board.length-1; y>=0; y--){
@@ -43,8 +48,12 @@ const displayController = () => {
                 } else if(board[x][y] === "miss"){
                     cell.classList.add("bg-blue-600");
                     cell.classList.add("miss");
-                } else {
+                } else if(board[x][y] === 0){
+                    cell.classList.add("bg-blue-400");
                     cell.classList.add("unknown");
+                } else {
+                    cell.classList.add("bg-yellow-400")
+                    
                 }
 
                 boardContainer.appendChild(cell);
