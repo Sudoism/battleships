@@ -4,6 +4,8 @@ A battleships project as part of The Odin project fullstack course. The project 
 
 The battleship game includes a easy AI which will deliver valid shots. 
 
+Live at https://sudoism.github.io/battleships/
+
 Some thoughts on how to take it to next level;
 * Harder AI that shoots close to hit until ship is sunk 
 * Refactored index.js code into a game module 
