@@ -43,21 +43,18 @@ const gameBoard = () => {
         let randomX = Math.floor(Math.random() * 10);
         let randomY = Math.floor(Math.random() * 10);
         let randomDirection = Math.floor(Math.random() * 2);
-        if (randomDirection === 0) {
-            randomDirection = 'vertical';
-        } else {
-            randomDirection = 'horizontal';
-        }
+        let randomDirectionValue = randomDirection === 0 ? 'horizontal' : 'vertical';
 
         let keepTrying = true;
 
         while(keepTrying) {
             try {
-                placeShip(randomX, randomY, length, randomDirection);
+                placeShip(randomX, randomY, length, randomDirectionValue);
                 keepTrying = false; //if no error, ship is placed on board and is added to ships array
             } catch (error) {
                 randomX = Math.floor(Math.random() * 10);
                 randomY = Math.floor(Math.random() * 10);
+                randomDirection = Math.floor(Math.random() * 2);
             }
         }
     }
@@ -110,6 +107,11 @@ const gameBoard = () => {
         return floatingShips;
     };
 
+    const getPlacedShips = () => {
+        return ships.length;
+    };
+
+
     return {
         placeShip,
         recieveAttack,
@@ -117,7 +119,8 @@ const gameBoard = () => {
         getBoard,
         getPrivateBoard,
         getFloatingShips,
-        placeShipsAuto
+        placeShipsAuto,
+        getPlacedShips
     };
 
 };

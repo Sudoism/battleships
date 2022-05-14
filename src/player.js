@@ -33,6 +33,11 @@ const player = (name) => {
         return playerBoard.getPrivateBoard();
     };
 
+    const getPlacedShips = () => {
+        return playerBoard.getPlacedShips();
+    };
+
+
     const performAttack = (grid) => {
         let validAttackCoordinates = [];
         // find valid attackspots
@@ -59,7 +64,8 @@ const player = (name) => {
         getPrivateBoard,
         performAttack,
         getFloatingShips,
-        placeShipsAuto
+        placeShipsAuto,
+        getPlacedShips
     };
 }
 

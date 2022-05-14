@@ -8,6 +8,13 @@ const displayController = () => {
         }
     };
 
+    const displayLabels = (playerObject1, playerObject2) => {
+        const playerLabel1 = document.getElementById("player-label-1");
+        const playerLabel2 = document.getElementById("player-label-2");
+        playerLabel1.innerHTML = `${playerObject1.getName()}`;
+        playerLabel2.innerHTML = `${playerObject2.getName()}`;
+    };
+
     const updateShipStatus= (shipStatusId, status) => {
         const shipStatus = document.getElementById(shipStatusId);
         shipStatus.innerText = status
@@ -34,7 +41,6 @@ const displayController = () => {
                     "border",
                     "border-dashed",
                     "border-gray-200",
-                    "hover:bg-blue-400",
                     "hover:cursor-crosshair",
                     "h-max-full",
                     "w-max-full",
@@ -50,6 +56,7 @@ const displayController = () => {
                     cell.classList.add("miss");
                 } else if(board[x][y] === 0){
                     cell.classList.add("bg-blue-400");
+                    cell.classList.add("hover:bg-blue-500");
                     cell.classList.add("unknown");
                 } else {
                     cell.classList.add("bg-yellow-400")
@@ -65,7 +72,8 @@ const displayController = () => {
         displayBoard,
         cleanBoard,
         updateGameStatus,
-        updateShipStatus
+        updateShipStatus,
+        displayLabels
     };
 }
 
